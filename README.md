@@ -1,105 +1,111 @@
-# URL-Phishing-Scanner
-Developed a Python-based phishing URL scanner that analyzes suspicious links using heuristic rules and WHOIS data.
-Integrated URL parsing, regular expressions, and domain analysis to flag phishing indicators like suspicious TLDs, subdomains, and IP-based URLs.
+# URL Phishing Scanner
 
-Implemented domain age verification using the python-whois library, identifying recently registered domains commonly used in phishing attacks.
+A modular and extensible tool for detecting malicious URLs using both blacklist checking and heuristic analysis.
 
-Designed a risk scoring system to assess URLs based on multiple red flags and classify them as safe, suspicious, or malicious.
+## Features
 
-Created a CLI interface for real
-!![image](https://github.com/user-attachments/assets/a56aab02-9566-41d0-bf25-51ed1cdbd534)
-# 📌 Features
-🧠 Heuristic-Based URL Analysis
-Detects phishing traits such as use of IP addresses, suspicious TLDs (e.g., .tk, .xyz), long/obfuscated URLs, and phishing-related keywords.
+- URL validation and formatting
+- Blacklist checking using Google Safe Browsing API
+- Heuristic analysis for phishing detection
+- Modern, responsive web interface
+- Real-time scanning results
+- Clipboard monitoring for automatic URL scanning
+- Modular and extensible architecture
 
-🔍 Domain Age Detection via WHOIS
-Flags newly registered domains commonly used in phishing attacks.
+## Project Structure
 
-⚠️ Phishing Risk Scoring System
-Calculates a risk score based on red flags and categorizes URLs as Safe, Suspicious, or Malicious.
+```
+url_scanner/
+├── __init__.py          # Package initialization
+├── core.py             # Core scanning functionality
+├── web.py              # Web interface
+└── clipboard.py        # Clipboard monitoring
+```
 
-📋 Clipboard Monitoring (Real-Time Detection)
-Automatically scans any copied URL from the clipboard to catch threats before the user clicks.
+## Heuristic Analysis Includes
 
-🛠️ Command-Line Interface (CLI)
-Lightweight CLI for quick scanning of URLs with clean output and flag descriptions.
+- HTTPS protocol checking
+- Suspicious TLD detection
+- IP address detection
+- Phishing keyword analysis
+- Subdomain length analysis
+- Special character detection
 
-📁 Modular & Extensible Codebase
-Designed for easy integration with future features like API checks, GUI, or browser extensions.
+## Setup
 
+1. Clone this repository
+2. Install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-# ⚙️ How It Works
-Clipboard Monitoring
-The program continuously monitors the system clipboard for copied URLs. As soon as a URL is copied, the scanner automatically checks it for potential phishing indicators, such as suspicious TLDs or excessive length.
+3. Set up your Google Safe Browsing API key:
+   - Go to the [Google Cloud Console](https://console.cloud.google.com/)
+   - Create a new project or select an existing one
+   - Enable the Safe Browsing API
+   - Create credentials (API key)
+   - Create a `.env` file in the project root and add:
+     ```
+     GOOGLE_SAFE_BROWSING_API_KEY=your_api_key_here
+     ```
 
-Phishing Risk Scoring
-The scanner assigns a phishing risk score based on multiple heuristic rules:
+4. Run the application:
+   ```bash
+   # Start the web interface
+   python run_web.py
+   
+   # In a separate terminal, start the clipboard monitor
+   python run_clipboard.py
+   ```
 
-Suspicious Top-Level Domains (TLDs) like .tk, .xyz, etc.
+5. Open your browser and navigate to `http://localhost:5000`
 
-Length of the URL (longer URLs are often more suspicious).
+## Usage
 
-Common phishing-related keywords (e.g., login, secure, verify).
+### Web Interface
+1. Enter a URL in the input field
+2. Click "Scan URL"
+3. View the results, which include:
+   - Risk level assessment
+   - Heuristic score
+   - Detailed reasons for the assessment
+   - Blacklist match status
+   - Scan timestamp
 
-Domain characteristics such as the number of subdomains or IP-based URLs.
+### Clipboard Monitor
+The clipboard monitor automatically scans URLs when they are copied to the clipboard:
+1. Start the clipboard monitor using `python run_clipboard.py`
+2. Copy any URL to your clipboard
+3. The monitor will automatically:
+   - Detect the URL
+   - Scan it for phishing risks
+   - Display the results in the terminal
+4. Press Ctrl+C to stop the monitor
 
-Newly registered domains, which are more likely to be used in phishing campaigns.
+## Extending the Project
 
-URL Classification
-Based on the calculated score, the program classifies the URL into one of three categories:
+The modular architecture makes it easy to extend the project:
 
-Safe: The URL passes all checks and is deemed trustworthy.
+1. Add new scanning methods:
+   - Create a new class in `core.py` or a new module
+   - Implement the scanning interface
+   - Add it to the `URLScanner` class
 
-Suspicious: The URL contains some indicators of phishing but isn't fully dangerous.
+2. Create new interfaces:
+   - Add new interface modules (e.g., `api.py` for REST API)
+   - Create corresponding entry points
+   - Reuse the core scanning functionality
 
-Malicious: The URL shows strong signs of phishing and should be avoided.
+3. Add new features:
+   - Browser extension support
+   - Additional blacklist sources
+   - Custom risk scoring rules
+   - Integration with other security tools
 
-User Feedback
-If a URL is flagged as suspicious or malicious, the program provides immediate feedback to the user, displaying relevant red flags and risk factors for better awareness.
+## Security Note
 
-!![image](https://github.com/user-attachments/assets/e1ebbbd5-b3fe-4088-be88-c0245cc97c1f)
-!![image](https://github.com/user-attachments/assets/d4b3e946-0db5-4e20-86f3-b3a1e695c79a)
+This tool is meant to be used as a preliminary check and should not be the only security measure you rely on. Always exercise caution when visiting unknown websites and use additional security measures.
 
-# 🚀 How to Use
-Clone the Repository
+## License
 
-First, clone the repository to your local machine:
-
-bash
-Copy
-Edit
-git clone https://github.com/yourusername/phishing-risk-scanner.git
-cd phishing-risk-scanner
-Install Dependencies
-
-Install the necessary libraries:
-
-bash
-Copy
-Edit
-pip install -r requirements.txt
-Alternatively, you can manually install the required dependencies:
-
-bash
-Copy
-Edit
-pip install pyperclip
-Run the Clipboard Monitor Script
-
-To start the clipboard monitoring feature, run the following command:
-
-bash
-Copy
-Edit
-python phishing_scanner.py
-The program will continuously monitor your clipboard for URLs. Whenever a URL is copied, it will be checked for phishing risks, and a report will be displayed in the terminal with the results.
-
-View Phishing Risk Report
-
-The scanner will output one of the following for each copied URL:
-
-Safe: No phishing indicators detected.
-
-Suspicious: Some suspicious characteristics detected (e.g., odd TLD or keyword).
-
-Malicious: Strong indications of phishing.
+MIT License 
