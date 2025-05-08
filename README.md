@@ -1,5 +1,12 @@
 # URL-Phishing-Scanner
 Developed a Python-based phishing URL scanner that analyzes suspicious links using heuristic rules and WHOIS data.
+Integrated URL parsing, regular expressions, and domain analysis to flag phishing indicators like suspicious TLDs, subdomains, and IP-based URLs.
+
+Implemented domain age verification using the python-whois library, identifying recently registered domains commonly used in phishing attacks.
+
+Designed a risk scoring system to assess URLs based on multiple red flags and classify them as safe, suspicious, or malicious.
+
+Created a CLI interface for real
 !![image](https://github.com/user-attachments/assets/a56aab02-9566-41d0-bf25-51ed1cdbd534)
 # 📌 Features
 🧠 Heuristic-Based URL Analysis
