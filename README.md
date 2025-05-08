@@ -1,16 +1,42 @@
 # URL Phishing Scanner
+Developed a Python-based phishing URL scanner that analyzes suspicious links using heuristic rules and WHOIS data.
 
-A modular and extensible tool for detecting malicious URLs using both blacklist checking and heuristic analysis.
+Integrated URL parsing, regular expressions, and domain analysis to flag phishing indicators like suspicious TLDs, subdomains, and IP-based URLs.
 
-## Features
+Implemented domain age verification using the python-whois library, identifying recently registered domains commonly used in phishing attacks.
 
-- URL validation and formatting
-- Blacklist checking using Google Safe Browsing API
-- Heuristic analysis for phishing detection
-- Modern, responsive web interface
-- Real-time scanning results
-- Clipboard monitoring for automatic URL scanning
-- Modular and extensible architecture
+Designed a risk scoring system to assess URLs based on multiple red flags and classify them as safe, suspicious, or malicious.
+
+Created a CLI interface for real.
+![image](https://github.com/user-attachments/assets/03e742bb-fe09-4def-899e-df3e170980e1)
+
+
+## 📌 Features
+🧠 Heuristic-Based URL Analysis
+Detects phishing traits such as use of IP addresses, suspicious TLDs (e.g., .tk, .xyz), long/obfuscated URLs, and phishing-related keywords.
+
+🔍 Domain Age Detection via WHOIS
+Flags newly registered domains commonly used in phishing attacks.
+
+⚠️ Phishing Risk Scoring System
+Calculates a risk score based on red flags and categorizes URLs as Safe, Suspicious, or Malicious.
+
+📋 Clipboard Monitoring (Real-Time Detection)
+Automatically scans any copied URL from the clipboard to catch threats before the user clicks.
+
+🛠️ Command-Line Interface (CLI)
+Lightweight CLI for quick scanning of URLs with clean output and flag descriptions.
+
+📁 Modular & Extensible Codebase
+Designed for easy integration with future features like API checks, GUI, or browser extensions.
+
+🌐 Blacklist Integration Ready
+Can be extended to use services like PhishTank, OpenPhish, or Google Safe Browsing API.
+
+📝 Logging Support (Optional)
+Scan results can be logged for later analysis or reporting.
+![image](https://github.com/user-attachments/assets/d26b0bb4-1ec3-432b-a502-9e58912daf90)
+![image](https://github.com/user-attachments/assets/0da832f9-0476-41cf-9f2e-d109f2f9e298)
 
 ## Project Structure
 
